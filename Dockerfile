@@ -9,7 +9,8 @@ RUN groupadd --gid 1000 logstash && adduser --uid 1000 --gid 1000 --home-dir /us
 
 WORKDIR /usr/share
 
-COPY logstash-7.17.12-SNAPSHOT.tar.gz .
+COPY logstash-7.17.12-SNAPSHOT.tar.gz.* ./
+RUN cat logstash-7.17.12-SNAPSHOT.tar.gz.* > logstash-7.17.12-SNAPSHOT.tar.gz
 RUN tar zxf logstash-7.17.12-SNAPSHOT.tar.gz
 RUN rm logstash-7.17.12-SNAPSHOT.tar.gz
 RUN rm -R /usr/share/logstash-7.17.12-SNAPSHOT/jdk
