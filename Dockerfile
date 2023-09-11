@@ -16,6 +16,8 @@ RUN rm logstash-7.17.12-SNAPSHOT.tar.gz
 RUN rm -R /usr/share/logstash-7.17.12-SNAPSHOT/jdk
 RUN mv /usr/share/logstash-7.17.12-SNAPSHOT /usr/share/logstash
 
+RUN logstash/bin/logstash-plugin install logstash-output-exec
+
 RUN chmod 0664 /usr/share/logstash/logstash-core/lib/logstash/build.rb
 RUN chown -R logstash:logstash /usr/share/logstash/
 RUN chown -R logstash:root /usr/share/logstash/
