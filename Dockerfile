@@ -68,6 +68,6 @@ LABEL  org.label-schema.schema-version="1.0" \
   org.opencontainers.image.licenses="Elastic License" \
   org.opencontainers.image.description="Logstash is a free and open server-side data processing pipeline that ingests data from a multitude of sources, transforms it, and then sends it to your favorite 'stash.'" \
   org.label-schema.build-date=2023-07-18T10:52:00+00:00 \
-org.opencontainers.image.created=2023-07-18T10:52:00+00:00
+  org.opencontainers.image.created=2023-07-18T10:52:00+00:00
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
