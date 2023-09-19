@@ -14,8 +14,8 @@ WORKDIR /usr/share
 
 COPY logstash-7.17.12-SNAPSHOT.tar.gz.* ./
 
-RUN cat logstash-7.17.12-SNAPSHOT.tar.gz.* > logstash-7.17.12-SNAPSHOT.tar.gz && \
-  tar zxf logstash-7.17.12-SNAPSHOT.tar.gz && \
+RUN cat logstash-7.17.12-SNAPSHOT.tar.gz.* > logstash-7.17.12-SNAPSHOT.tar.gz
+RUN tar zxf logstash-7.17.12-SNAPSHOT.tar.gz && \
   rm logstash-7.17.12-SNAPSHOT.tar.gz && \
   rm -R /usr/share/logstash-7.17.12-SNAPSHOT/jdk && \
   mv /usr/share/logstash-7.17.12-SNAPSHOT /usr/share/logstash && \
