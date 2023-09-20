@@ -1,6 +1,6 @@
 #FROM centos:7
 #FROM registry.redhat.io/ubi8/ubi
-FROM registry.redhat.io/ubi9/openjdk-11-runtime
+FROM registry.redhat.io/ubi8/openjdk-11-runtime
 
 #RUN yum update -y && \
 #  yum install -y java-11-openjdk-devel which && \
