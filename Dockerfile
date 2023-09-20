@@ -3,8 +3,6 @@ FROM registry.redhat.io/ubi8/ubi
 
 RUN yum update -y &&\
   yum install -y java-11-openjdk-devel which &&\
-  yum install -y locales &&\
-  locale-gen en_US.UTF-8 &&\
   yum clean all
 
 ENV LS_JAVA_HOME=/usr/lib/jvm/java-11-openjdk
@@ -50,7 +48,7 @@ ADD pipeline/default.conf pipeline/logstash.conf
 RUN chown --recursive logstash:root config/ pipeline/
 
 # Ensure Logstash gets the correct locale by default.
-ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+#ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 ADD env2yaml/env2yaml /usr/local/bin/
 
 # Place the startup wrapper script.
