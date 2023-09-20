@@ -1,15 +1,16 @@
 #FROM centos:7
-#FROM registry.redhat.io/ubi8/ubi
-FROM registry.redhat.io/ubi8/openjdk-11-runtime
+FROM registry.redhat.io/ubi8/ubi
 
-#RUN yum update -y && \
-#  yum install -y java-11-openjdk-devel which && \
-#  yum clean all
+RUN yum update -y &&\
+  yum install -y java-11-openjdk-devel which &&\
+  yum install -y locales &&\
+  locale-gen en_US.UTF-8 &&\
+  yum clean all
 
-#ENV LS_JAVA_HOME=/usr/lib/jvm/java-11-openjdk
-#ENV PATH=$PATH:$LS_JAVA_HOME
+ENV LS_JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+ENV PATH=$PATH:$LS_JAVA_HOME
 
-RUN groupadd --gid 1000 logstash && \
+RUN groupadd --gid 1000 logstash &&\
   adduser --uid 1000 --gid 1000 --home-dir /usr/share/logstash --no-create-home logstash
 
 WORKDIR /usr/share
@@ -18,19 +19,19 @@ COPY logstash-7.17.12-SNAPSHOT.tar.gz.* ./
 
 RUN cat logstash-7.17.12-SNAPSHOT.tar.gz.* > logstash-7.17.12-SNAPSHOT.tar.gz
 
-RUN tar zxf logstash-7.17.12-SNAPSHOT.tar.gz && \
-  rm logstash-7.17.12-SNAPSHOT.tar.gz && \
-  rm -R /usr/share/logstash-7.17.12-SNAPSHOT/jdk && \
+RUN tar zxf logstash-7.17.12-SNAPSHOT.tar.gz &&\
+  rm logstash-7.17.12-SNAPSHOT.tar.gz &&\
+  rm -R /usr/share/logstash-7.17.12-SNAPSHOT/jdk &&\
   mv /usr/share/logstash-7.17.12-SNAPSHOT /usr/share/logstash
 
 RUN logstash/bin/logstash-plugin install logstash-output-exec
 
-RUN chmod 0664 /usr/share/logstash/logstash-core/lib/logstash/build.rb && \
-  chown -R logstash:logstash /usr/share/logstash/ && \
-  chown -R logstash:root /usr/share/logstash/ && \
-  chmod -R g=u /usr/share/logstash/ && \
-  find /usr/share/logstash -type d -exec chmod g+s {} \; && \
-  chmod 777 /usr/share/logstash/data && \
+RUN chmod 0664 /usr/share/logstash/logstash-core/lib/logstash/build.rb &&\
+  chown -R logstash:logstash /usr/share/logstash/ &&\
+  chown -R logstash:root /usr/share/logstash/ & \
+  chmod -R g=u /usr/share/logstash/ &&\
+  find /usr/share/logstash -type d -exec chmod g+s {} \; &&\
+  chmod 777 /usr/share/logstash/data &&\
   ln -s /usr/share/logstash /opt/logstash 
 #RUN chmod -R 777 /usr/share/logstash
 
