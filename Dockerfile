@@ -1,12 +1,13 @@
 #FROM centos:7
-FROM registry.redhat.io/ubi8/ubi
+#FROM registry.redhat.io/ubi8/ubi
+FROM registry.redhat.io/ubi9/openjdk-11-runtime
 
-RUN yum update -y && \
-  yum install -y java-11-openjdk-devel which && \
-  yum clean all
+#RUN yum update -y && \
+#  yum install -y java-11-openjdk-devel which && \
+#  yum clean all
 
-ENV LS_JAVA_HOME=/usr/lib/jvm/java-11-openjdk
-ENV PATH=$PATH:$LS_JAVA_HOME
+#ENV LS_JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+#ENV PATH=$PATH:$LS_JAVA_HOME
 
 RUN groupadd --gid 1000 logstash && \
   adduser --uid 1000 --gid 1000 --home-dir /usr/share/logstash --no-create-home logstash
