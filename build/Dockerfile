@@ -23,4 +23,4 @@ WORKDIR logstash
 RUN git checkout v7.17.12
 
 RUN sed -i '2d' ./rakelib/artifacts.rake
-RUN rake artifact:no_bundle_jdk_tar
+RUN /bin/bash -l -c "rake artifact:no_bundle_jdk_tar"
